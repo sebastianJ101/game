@@ -48,7 +48,7 @@ function create() {
     ledge = platforms.create(-150, 230, 'ground');
     ledge.body.immovable = true;
     ledge = platforms.create(-200, 100, 'ground');
-    ledge.body.immovable = true;
+    ledge.body.immovable = false;
     // The player and its settings
     player = game.add.sprite(32, game.world.height - 150, 'dude');
     
@@ -57,7 +57,7 @@ function create() {
     
     game.physics.arcade.enable(enemy);
     //  Player physics properties. Give the little guy a slight bounce.
-    enemy.body.bounce.y = 0.2;
+    enemy.body.bounce.y = 1.0;
     enemy.body.gravity.y = 350;
     enemy.body.collideWorldBounds = true;
     //  Our two animations, walking left and right.
@@ -80,17 +80,17 @@ function create() {
     //  We will enable physics for any star that is created in this group
     stars.enableBody = true;
     //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 1; i < 300; i++)
-    {
+    for (var i = 1; i < 10001; i++)
+    {9
         //  Create a star inside of the 'stars' group
-        var star = stars.create(i * 20, 0, 'star');
+        var star = stars.create(i * 0.08, 0, 'star');
         //  Let gravity do its thing
         star.body.gravity.y = 300;
         //  This just gives each star a slightly random bounce value
-        star.body.bounce.y = 0.7 + Math.random() * 0.2;
+        star.body.bounce.y = 1.0 + Math.random() * 0.2;
     }
     //  The score
-    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: 'white' });
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
     
@@ -148,8 +148,8 @@ function collectStar (player, star) {
     // Removes the star from the screen
     star.kill();
     //  Add and update the score
-    score += 420;
-    scoreText.text = 'Score: ' + score;
+    score += 1;
+    scoreText.text = 'Score: 9999/' + score;
 }
     function playerVsEnemy(player, enemy) {
        if (player.body.position.y + 16 < enemy.body.position.y){
